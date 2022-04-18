@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class BinaryTree<E>{
 	E data;
 	BinaryTree<E> leftTree, rightTree;
@@ -13,7 +15,7 @@ public class BinaryTree<E>{
 			throw new IllegalArgumentException();
 		}
 		this.data= data;
-		this.leftTree= leftTree;
+		this.leftTree = leftTree;
 		this.rightTree= rightTree;
 	}
 	
@@ -45,4 +47,18 @@ public class BinaryTree<E>{
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
 
+	void cleanUp(){
+		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+	}
+	 ArrayList<E> getPath(E data){
+		 throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+
+	 }
+	 int count(E data){
+		 throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+	 }
+	 ArrayList<E> geefKnopenBinnenInterval(E min, E max){
+		 throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+
+	 }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -34,12 +35,14 @@ public class Graph {
         return this.verbindingsMatrix.length;
     }
 
-    private int[] findAncestors(int start, int destination) {// nummering van
+    private int[] findAncestors(int start, int destination) {
+        // nummering van
         // start-knoop
         // (1..aantal_knopen)
         // naar
         // eindKnoop
         // (destination)
+
         int[] ancestors = new int[this.getAantalKnopen()];
         initArray(ancestors, infty);
 
@@ -49,8 +52,25 @@ public class Graph {
         ancestors[start - 1] = 0;
 
         // oefening 1.4
+        while (!queue.isEmpty()){
+            start = queue.remove();
 
+
+
+            ArrayList<Integer> aanliggende = new ArrayList<>();
+            for (int i = 0; i < verbindingsMatrix.length; i++){
+                if (verbindingsMatrix[start][i] == 1) aanliggende.add(i);
+            }
+            for (Integer i : aanliggende) {
+                if (ancestors[i] == infty) {
+                    ancestors[i] = start;
+                    queue.add(i);
+                }
+            }
+
+        }
         return ancestors;
+
     }
 
     public List<Integer> findPath(int start, int destination) {
@@ -81,6 +101,4 @@ public class Graph {
 
         return res;
     }
-
-
 }

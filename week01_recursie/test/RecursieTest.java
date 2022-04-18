@@ -207,7 +207,7 @@ public class RecursieTest {
 	@Test
 	public void testOef10_FindSubstrings_String_Met_Lengte_Meer_Dan_1_geeft_arraylist_Met_Strings() {
 		ArrayList<String> res = Recursie.findSubstrings("abc");
-		assertEquals(7,res.size());
+		assertEquals(7, res.size());
 		assertTrue(res.contains("a"));
 		assertTrue(res.contains("b"));
 		assertTrue(res.contains("c"));
