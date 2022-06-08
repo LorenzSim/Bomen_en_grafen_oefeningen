@@ -67,8 +67,7 @@ public class Recursie {
 
     public static int tweelog(int getal) {
         if(getal <= 0) throw new IllegalArgumentException();
-        if(getal == 1) return 0;
-        if(getal == 2) return 1;
+        if(getal <= 2) return getal - 1;
         return 1 + tweelog(getal / 2);
     }
 
@@ -86,19 +85,17 @@ public class Recursie {
 
     public static ArrayList<String> findSubstrings(String string) {
         if(string == null) throw new IllegalArgumentException();
-        if(string.length() == 0) return new ArrayList<>() {{ add(""); }};
-
-        if(string.length() == 1) return new ArrayList<>() {{ add(string); }};
-        var res = findSubstrings(string.substring(1));
-        return new ArrayList<>(){
-            {
-                add(string);
-                for(String r : res){
-                    add(r);
-                }
+        ArrayList<String> result = new ArrayList<>() {{ add(string); }};
+        if(string.length() <= 1) return result;
+        String first = String.valueOf(string.charAt(0));
+        result.add(first);
+        if (string.length() > 2){
+            for (int i = 1; i < string.length(); i++){
+                result.add(first + string.charAt(i));
             }
-        };
-
+        }
+        result.addAll(findSubstrings(string.substring(1)));
+        return result;
     }
 
     /* oefening 11; */

@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -35,14 +35,12 @@ public class Graph {
         return this.verbindingsMatrix.length;
     }
 
-    private int[] findAncestors(int start, int destination) {
-        // nummering van
+    private int[] findAncestors(int start, int destination) {// nummering van
         // start-knoop
         // (1..aantal_knopen)
         // naar
         // eindKnoop
         // (destination)
-
         int[] ancestors = new int[this.getAantalKnopen()];
         initArray(ancestors, infty);
 
@@ -51,23 +49,15 @@ public class Graph {
         queue.add(start);
         ancestors[start - 1] = 0;
 
-        // oefening 1.4
+        // TODO oefening 1.4
         while (!queue.isEmpty()){
-            start = queue.remove();
-
-
-
-            ArrayList<Integer> aanliggende = new ArrayList<>();
-            for (int i = 0; i < verbindingsMatrix.length; i++){
-                if (verbindingsMatrix[start][i] == 1) aanliggende.add(i);
-            }
-            for (Integer i : aanliggende) {
-                if (ancestors[i] == infty) {
-                    ancestors[i] = start;
-                    queue.add(i);
+            int first = queue.remove();
+            for (int i = 0; i < getAantalKnopen(); i++){
+                if (verbindingsMatrix[first - 1][i] == 1 && ancestors[i] == infty){
+                    ancestors[i] = first;
+                    queue.add(i + 1);
                 }
             }
-
         }
         return ancestors;
 
@@ -79,16 +69,21 @@ public class Graph {
 
         int[] ancestors = this.findAncestors(start, destination);
         List<Integer> path = new LinkedList<>();
+        // TODO oefening 1.5
+        for (int i : ancestors) if (i == infty) return path;
 
-        // oefening 1.5
-
+        path.add(destination);
+        int i = destination;
+        while (i != start){
+            path.add(0, ancestors[i - 1]);
+            i = ancestors[i - 1];
+        }
         return path;
 
     }
 
     private void initArray(int[] array, int value) {
-        for (int i = 0; i < array.length; i++)
-            array[i] = value;
+        Arrays.fill(array, value);
     }
 
 
@@ -101,4 +96,6 @@ public class Graph {
 
         return res;
     }
+
+
 }

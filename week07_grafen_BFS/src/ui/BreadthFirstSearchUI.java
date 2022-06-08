@@ -7,8 +7,8 @@ import domain.Graph;
 public class BreadthFirstSearchUI {
 
 	public static void main(String[] args) {
-
-		int data[][] = { 	{ 0, 1, 0, 1, 0, 0, 0 }, 
+		/*
+		int[][] data = { 	{ 0, 1, 0, 1, 0, 0, 0 },
 							{ 0, 0, 1, 0, 0, 0, 0 }, 
 							{ 1, 0, 0, 1, 1, 0, 0 },
 							{ 0, 0, 0, 0, 1, 1, 0 }, 
@@ -30,6 +30,34 @@ public class BreadthFirstSearchUI {
 		System.out.println(bfs.geefAncestors(start, destination));
 		// eindresultaat
 		System.out.println(zetPadOmNaarString(start, destination, bfs.findPath(start, destination)));
+		*/
+		int start, destination;
+		int[][] data2 ={
+				{0,1,1,1,0,0,0,0},
+				{1,0,1,0,1,0,0,0},
+				{1,1,0,0,0,1,0,0},
+				{1,0,0,0,0,1,1,0},
+				{0,1,0,0,0,1,0,1},
+				{0,0,1,1,1,0,1,0},
+				{0,0,0,1,0,1,0,1},
+				{0,0,0,0,1,0,1,0}
+		};
+
+		Graph graph2 = new Graph(data2);
+		start = 1;
+		destination = 6;
+		System.out.println(zetPadOmNaarString(start, destination, graph2.findPath(start, destination)));
+		start = 3;
+		destination = 8;
+		System.out.println(zetPadOmNaarString(start, destination, graph2.findPath(start, destination)));
+		start = 4;
+		destination = 5;
+		System.out.println(zetPadOmNaarString(start, destination, graph2.findPath(start, destination)));
+		start = 7;
+		destination = 2;
+		System.out.println(zetPadOmNaarString(start, destination, graph2.findPath(start, destination)));
+
+
 	}
 
 	private static String zetPadOmNaarString(int start, int destination, List<Integer> path) {

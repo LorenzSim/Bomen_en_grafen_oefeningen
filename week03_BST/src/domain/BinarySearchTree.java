@@ -17,12 +17,8 @@ public class BinarySearchTree<E extends Comparable<E>> extends BinaryTree<E> {
 	public boolean lookup(E data) {
 		if (this.data.compareTo(data) == 0) return true;
 
-		if(data.compareTo(this.data) < 0){
-			if(leftTree == null) return false;
-			return leftTree.lookup(data);
-		}
-		if(rightTree == null) return false;
-		return rightTree.lookup(data);
+		if(data.compareTo(this.data) < 0) return leftTree == null ? false : leftTree.lookup(data);
+		return rightTree == null ? return false : rightTree.lookup(data);
 	}
 
 	public boolean addNode(E data) {
